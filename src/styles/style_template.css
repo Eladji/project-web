@@ -7,13 +7,13 @@ body {
 
 .header {
   overflow: hidden;
-  background-color: #f1f1f1;
-  padding: 10px 10px;
+  background-color: #615e5e;
+  padding: 20px 10px;
 }
 
 .header a {
   float: left;
-  color: black;
+  color: rgb(236, 236, 236);
   text-align: center;
   padding: 5px;
   text-decoration: none;
@@ -25,18 +25,22 @@ body {
 .header a.logo {
   font-size: 50px;
   font-weight: bold;
-  display: flex;
+ 
 }
 
 .header a:hover {
-  background-color: #ddd;
+  background-color: #4b4949;
   color: black;
 }
 
 .header img {
   width: 60px;
   height: 60px;
-  border-radius: 50%;
+  padding-bottom: 0px;
+  padding-top: auto;
+ 
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
  
 }
 

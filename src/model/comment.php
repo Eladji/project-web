@@ -1,11 +1,26 @@
 <?php
-class comment {
+class comment
+{
     private int $id;
     private string $content;
     private $creation_date;
     private int $id_author;
     private int $id_project;
+    
+    public function __construct(array $data)
+    {
+        $this->hydrate($data);
+    }
 
+    public function hydrate(array $data): void
+    {
+        foreach ($data as $key => $value) {
+            $method = "set" . ucfirst($key);
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
+    }
     /**
      * Get the value of id
      */

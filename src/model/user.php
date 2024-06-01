@@ -9,6 +9,20 @@ class user {
     private int $nbt_project;
     private string $icon;
     
+    public function __construct(array $data)
+    {
+        $this->hydrate($data);
+    }
+
+    public function hydrate(array $data): void
+    {
+        foreach ($data as $key => $value) {
+            $method = "set" . ucfirst($key);
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
+    }
 
     /**
      * Get the value of id
@@ -121,7 +135,7 @@ class user {
     /**
      * Get the value of nbt_project
      */
-    public function getNbtProject(): int
+    public function getNbt_Project(): int
     {
         return $this->nbt_project;
     }
@@ -129,7 +143,7 @@ class user {
     /**
      * Set the value of nbt_project
      */
-    public function setNbtProject(int $nbt_project): self
+    public function setNbt_Project(int $nbt_project): self
     {
         $this->nbt_project = $nbt_project;
 

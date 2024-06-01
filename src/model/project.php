@@ -1,5 +1,6 @@
 <?php
-class project{
+class project
+{
     private int $id;
     private string $name;
     private string $description;
@@ -9,6 +10,20 @@ class project{
     private string $thumbnail;
     private string $repo_git;
 
+    public function __construct(array $data)
+    {
+        $this->hydrate($data);
+    }
+
+    public function hydrate(array $data): void
+    {
+        foreach ($data as $key => $value) {
+            $method = "set" . ucfirst($key);
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
+    }
     /**
      * Get the value of id
      */

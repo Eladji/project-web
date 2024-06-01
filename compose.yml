@@ -5,9 +5,21 @@ services:
       - "8000:80"
     volumes:
       - ./src:/var/www/html:ro
+    restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+   
 
   mysql:
-    image: mysql
+    image: mysql:8.0
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
     ports:
       - "6033:3306"
     volumes:
@@ -17,8 +29,21 @@ services:
       MYSQL_DATABASE: app_db
     env_file:
       - .env
+    restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+   
   phpmyadmin:
-    image: phpmyadmin:latest
+    image: phpmyadmin/phpmyadmin:5.2.1
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
     links:
       - "mysql"
     ports:
@@ -27,6 +52,12 @@ services:
       PMA_HOST: mysql
       PMA_PORT: 3306
       PMA_ARBITRARY: 0
-
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    
 volumes:
   dbdata:

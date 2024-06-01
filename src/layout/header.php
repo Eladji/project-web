@@ -10,20 +10,29 @@
 </head>
 
 <body>
+    <?php
+
+    function chargerclass($class)
+    {
+        require 'src/model/' . $class . '.php';
+    }
+
+    spl_autoload_register('chargerclass');
+    ?>
     <div class="header">
 
-        <a href="#default" class="logo">
-            <img src="./media/cb_icon.png" alt="site icon">
-            <p>
+        <a href="../index.php" class="logo">
+            <img src="../media/cb_icon.png" alt="site icon">
 
-                CoopBrain_
-            </p>
+
+            CoopBrain_
+
         </a>
         <div class="header-right">
-            <a class="active" href="../index.php">Home</a>
+            <a class="active" href="../profil.php">Profil</a>
+
             <a href="#contact">Contact</a>
             <a href="#about">About</a>
-            <a href="../profil.php">Profil</a>
         </div>
     </div>
 </body>
