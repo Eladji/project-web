@@ -24,23 +24,23 @@ class user_manager
     }
 public function add(user $user)
     {
-        $query = $this->db->prepare('INSERT INTO user (name, email, password, git, score, nbt_project, icon) VALUES (:name, :email, :password, :git, :score, :nbt_project, :icon)');
-        $query->bindValue(':name', $user->getName(), PDO::PARAM_STR);
-        $query->bindValue(':email', $user->getEmail(), PDO::PARAM_STR);
-        $query->bindValue(':password', $user->getPassword(), PDO::PARAM_STR);
-        $query->bindValue(':git', $user->getGit(), PDO::PARAM_STR);
-        $query->bindValue(':score', $user->getScore(), PDO::PARAM_INT);
-        $query->bindValue(':nbt_project', $user->getNbt_project(), PDO::PARAM_INT);
-        $query->bindValue(':icon', $user->getIcon(), PDO::PARAM_STR);
-        $query->execute();
+        $req = $this->db->prepare('INSERT INTO user (name, email, password, git, score, nbt_project, icon) VALUES (:name, :email, :password, :git, :score, :nbt_project, :icon)');
+        $req->bindValue(':name', $user->getName(), PDO::PARAM_STR);
+        $req->bindValue(':email', $user->getEmail(), PDO::PARAM_STR);
+        $req->bindValue(':password', $user->getPassword(), PDO::PARAM_STR);
+        $req->bindValue(':git', $user->getGit(), PDO::PARAM_STR);
+        $req->bindValue(':score', $user->getScore(), PDO::PARAM_INT);
+        $req->bindValue(':nbt_project', $user->getNbt_project(), PDO::PARAM_INT);
+        $req->bindValue(':icon', $user->getIcon(), PDO::PARAM_STR);
+        $req->execute();
 
     }
     public function get($id)
     {
-        $query = $this->db->prepare('SELECT * FROM user WHERE id = :id');
-        $query->bindValue(':id', $id, PDO::PARAM_INT);
-        $query->execute();
-        $data = $query->fetch();
+        $req = $this->db->prepare('SELECT * FROM user WHERE id = :id');
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        $data = $req->fetch();
        $user = new user($data);
         return $user;   
     }
@@ -48,9 +48,9 @@ public function add(user $user)
     public function get_all()
     { //gonna have regret over this i can feel it 
         $datas = [];
-        $query = $this->db->query("SELECT * FROM 'user' ORDER BY name");
-        $query->execute();
-        $data = $query->fetchAll();
+        $req = $this->db->req("SELECT * FROM 'user' ORDER BY name");
+        $req->execute();
+        $data = $req->fetchAll();
         foreach ($data as $datas) {
             $user = new user($datas);
             $users[] = $user;
@@ -60,22 +60,22 @@ public function add(user $user)
 
 public function update(user $user)
     {
-        $query = $this->db->prepare('UPDATE user SET name = :name, email = :email, password = :password, git = :git, score = :score, nbt_project = :nbt_project, icon = :icon WHERE id = :id');
-        $query->bindValue(':name', $user->getName(), PDO::PARAM_STR);
-        $query->bindValue(':email', $user->getEmail(), PDO::PARAM_STR);
-        $query->bindValue(':password', $user->getPassword(), PDO::PARAM_STR);
-        $query->bindValue(':git', $user->getGit(), PDO::PARAM_STR);
-        $query->bindValue(':score', $user->getScore(), PDO::PARAM_INT);
-        $query->bindValue(':nbt_project', $user->getNbt_project(), PDO::PARAM_INT);
-        $query->bindValue(':icon', $user->getIcon(), PDO::PARAM_STR);
-        $query->bindValue(':id', $user->getId(), PDO::PARAM_INT);
-        $query->execute();
+        $req = $this->db->prepare('UPDATE user SET name = :name, email = :email, password = :password, git = :git, score = :score, nbt_project = :nbt_project, icon = :icon WHERE id = :id');
+        $req->bindValue(':name', $user->getName(), PDO::PARAM_STR);
+        $req->bindValue(':email', $user->getEmail(), PDO::PARAM_STR);
+        $req->bindValue(':password', $user->getPassword(), PDO::PARAM_STR);
+        $req->bindValue(':git', $user->getGit(), PDO::PARAM_STR);
+        $req->bindValue(':score', $user->getScore(), PDO::PARAM_INT);
+        $req->bindValue(':nbt_project', $user->getNbt_project(), PDO::PARAM_INT);
+        $req->bindValue(':icon', $user->getIcon(), PDO::PARAM_STR);
+        $req->bindValue(':id', $user->getId(), PDO::PARAM_INT);
+        $req->execute();
     }
 
     public function delete($id)
     {
-        $query = $this->db->prepare('DELETE FROM user WHERE id = :id');
-        $query->bindValue(':id', $id);
-        $query->execute();
+        $req = $this->db->prepare("DELETE FROM 'user' WHERE id = :id");
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
+        $req->execute();
     }
 }

@@ -18,7 +18,7 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])
         'nbt_project' => 0,
         'icon' => ''
     ]);
-    $user_manager = new userManager();
+    $user_manager = new user_manager();
     $user_manager->add($user);
     header('Location: ../index.php');
     exit();
