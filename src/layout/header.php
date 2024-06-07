@@ -12,12 +12,15 @@
 <body>
     <?php
 
-    function chargerclass($class)
-    {
-        require 'src/model/' . $class . '.php';
+function loadClass(string $class)
+{
+    if (str_contains($class, "manager")) {
+        require("./managers/$class.php");
+    } else {
+        require("./model/$class.php");
     }
-
-    spl_autoload_register('chargerclass');
+}
+    spl_autoload_register('loadClass');
     ?>
     <div class="header">
 

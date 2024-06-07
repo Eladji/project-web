@@ -6,14 +6,18 @@ class user_manager
 
     public function __construct()
     {
-        $config = parse_ini_file('../../db_config.ini', true);
+        $config = parse_ini_file('./db_config.ini', true);
+        if ($config === false) {
+            // Handle error - for example, by throwing an exception or displaying an error message
+            throw new Exception('Failed to connect to database: ' . mysqli_connect_error());
+        }        
         $host = $config['database']['host'];
         $dbname = $config['database']['dbname'];
         $username = $config['database']['username'];
         $password = $config['database']['password'];
         $port = $config['database']['port'];
         try {
-            $this->db = new PDO("mysql:host=$host;dbname=$dbname;port=$port;charset=utf8m4", $username, $password);
+            $this->db = new PDO("mysql:host=$host;dbname=$dbname;port=$port;charset=UTF8", $username, $password);
         } catch (PDOException $error) {
             echo $error->getMessage();
         }
