@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+ session_start();
+?>
+<!-- header.php never put the session start after comment-->
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/style_template.css">
-    <link rel="icon" type="image/png" href="./media/cb_icon-transformed.png" />
-    <title>Coop brain</title>
-</head>
+<?php
 
-<body>
-    <?php
-
-function loadClass(string $class)
+function loadClass(string $class): void
 {
-    if (str_contains($class, "manager")) {
+    if (str_contains($class, "Manager")) {
         require("./managers/$class.php");
     } else {
         require("./model/$class.php");
@@ -22,22 +15,36 @@ function loadClass(string $class)
 }
     spl_autoload_register('loadClass');
     ?>
-    <div class="header">
 
-        <a href="../index.php" class="logo">
-            <img src="../media/cb_icon.png" alt="site icon">
-
-
-            CoopBrain_
-
-        </a>
-        <div class="header-right">
-            <a class="active" href="../profil.php">Profil</a>
-
-            <a href="#contact">Contact</a>
-            <a href="#about">About</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coop-Brain</title>
+    <link rel="stylesheet" href="styles/header-footer.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.php" class="logo">
+                <img src="../media/cb_icon.png" alt="Coop-Brain Logo">
+                <span>Coop-Brain</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.php">Home</a></li>
+                    <?php if ($_SESSION && $_SESSION["is_connected"]) : ?>
+                        <li><a href="dashboard.php">Dashboard</a></li>
+                        <li><a href="logout.php">Logout</a></li>
+                    <li><a href="createProject.php">Create Project</a></li>
+                    <?php else : ?>
+                        <li><a href="login.php">Login</a></li>
+                        <li><a href="register.php">Register</a></li>
+                    <?php endif; ?>
+                    <li><a href="about.php">About</a></li>
+                </ul>
+            </nav>
         </div>
-    </div>
-</body>
-
-</html>
+    </header>
+    <main>

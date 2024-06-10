@@ -1,0 +1,71 @@
+/* styles.css */
+
+.login div {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container, .register-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2, .register-container h2 {
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
+.login-container div, .register-container div {
+    margin-bottom: 15px;
+}
+
+.login-container label, .register-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.login-container input[type="email"],
+.login-container input[type="password"],
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-container button, .register-container button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #5cb85c;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-container button:hover, .register-container button:hover {
+    background-color: #4cae4c;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+a {
+    color: #5cb85c;
+}

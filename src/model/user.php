@@ -1,170 +1,45 @@
 <?php
-class user {
+// User.php
+
+class User {
     private int $id;
     private string $name;
-    private string $email;
     private string $password;
+    private string $email;
     private string $git;
     private int $score;
     private int $nbt_project;
     private string $icon;
-    
-    public function __construct(array $data)
-    {
-        $this->hydrate($data);
-    }
 
-    public function hydrate(array $data): void
-    {
-        foreach ($data as $key => $value) {
-            $method = "set" . ucfirst($key);
-            if (method_exists($this, $method)) {
-                $this->$method($value);
-            }
-        }
-    }
-
-    /**
-     * Get the value of id
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set the value of id
-     */
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of name
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set the value of name
-     */
-    public function setName(string $name): self
-    {
+    public function __construct(string $name, string $password, string $email, string $git, int $score, int $nbt_project, string $icon) {
         $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of email
-     */
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set the value of email
-     */
-    public function setEmail(string $email): self
-    {
+        $this->password = password_hash($password, PASSWORD_BCRYPT); // Hash the password
         $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of password
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    /**
-     * Set the value of password
-     */
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of git
-     */
-    public function getGit(): string
-    {
-        return $this->git;
-    }
-
-    /**
-     * Set the value of git
-     */
-    public function setGit(string $git): self
-    {
         $this->git = $git;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of score
-     */
-    public function getScore(): int
-    {
-        return $this->score;
-    }
-
-    /**
-     * Set the value of score
-     */
-    public function setScore(int $score): self
-    {
         $this->score = $score;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of nbt_project
-     */
-    public function getNbt_Project(): int
-    {
-        return $this->nbt_project;
-    }
-
-    /**
-     * Set the value of nbt_project
-     */
-    public function setNbt_Project(int $nbt_project): self
-    {
         $this->nbt_project = $nbt_project;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of icon
-     */
-    public function getIcon(): string
-    {
-        return $this->icon;
-    }
-
-    /**
-     * Set the value of icon
-     */
-    public function setIcon(string $icon): self
-    {
         $this->icon = $icon;
-
-        return $this;
     }
+
+    // Getters
+    public function getId(): int { return $this->id; }
+    public function getName(): string { return $this->name; }
+    public function getPassword(): string { return $this->password; }
+    public function getEmail(): string { return $this->email; }
+    public function getGit(): string { return $this->git; }
+    public function getScore(): int { return $this->score; }
+    public function getNbtProject(): int { return $this->nbt_project; }
+    public function getIcon(): string { return $this->icon; }
+
+    // Setters
+    public function setId(int $id) : void { $this->id = $id; }
+    public function setName(string $name): void { $this->name = $name; }
+    public function setPassword(string $password): void { $this->password = password_hash($password, PASSWORD_BCRYPT); }
+    public function setEmail(string $email): void { $this->email = $email; }
+    public function setGit(string $git): void { $this->git = $git; }
+    public function setScore(int $score): void { $this->score = $score; }
+    public function setNbtProject(int $nbt_project): void { $this->nbt_project = $nbt_project; }
+    public function setIcon(string $icon): void { $this->icon = $icon; }
 }
+
+

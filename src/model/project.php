@@ -1,170 +1,112 @@
 <?php
-class project
+// src/Project.php
+
+class Project
 {
     private int $id;
     private string $name;
-    private string $description;
-    private $creation_date;
-    private bool $state;
-    private int $id_creator;
+    private int $state;
+    private DateTime $creationDate;
+    private string $repoGit;
+    private int $idAuthor;
     private string $thumbnail;
-    private string $repo_git;
+    private string $description;
 
-    public function __construct(array $data)
-    {
-        $this->hydrate($data);
+    // Constructor
+    public function __construct(
+        string $name,
+        int $state,
+        string $repoGit,
+        int $idAuthor,
+        string $thumbnail,
+        string $description
+    ) {
+        $this->name = $name;
+        $this->state = $state;
+        $this->repoGit = $repoGit;
+        $this->idAuthor = $idAuthor;
+        $this->thumbnail = $thumbnail;
+        $this->description = $description;
+        $this->creationDate = new DateTime();
     }
 
-    public function hydrate(array $data): void
-    {
-        foreach ($data as $key => $value) {
-            $method = "set" . ucfirst($key);
-            if (method_exists($this, $method)) {
-                $this->$method($value);
-            }
-        }
-    }
-    /**
-     * Get the value of id
-     */
+    // Getters and setters
+
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * Set the value of id
-     */
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of name
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * Set the value of name
-     */
-    public function setName(string $name): self
+    public function setName(string $name): void
     {
         $this->name = $name;
-
-        return $this;
     }
 
-    /**
-     * Get the value of description
-     */
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set the value of description
-     */
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of creation_date
-     */
-    public function getCreationDate()
-    {
-        return $this->creation_date;
-    }
-
-    /**
-     * Set the value of creation_date
-     */
-    public function setCreationDate($creation_date): self
-    {
-        $this->creation_date = $creation_date;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of state
-     */
-    public function isState(): bool
+    public function getState(): int
     {
         return $this->state;
     }
 
-    /**
-     * Set the value of state
-     */
-    public function setState(bool $state): self
+    public function setState(int $state): void
     {
         $this->state = $state;
-
-        return $this;
     }
 
-    /**
-     * Get the value of id_creator
-     */
-    public function getIdCreator(): int
+    public function getCreationDate(): DateTime
     {
-        return $this->id_creator;
+        return $this->creationDate;
     }
 
-    /**
-     * Set the value of id_creator
-     */
-    public function setIdCreator(int $id_creator): self
+    public function setCreationDate(DateTime $creationDate): void
     {
-        $this->id_creator = $id_creator;
-
-        return $this;
+        $this->creationDate = $creationDate;
     }
 
-    /**
-     * Get the value of thumbnail
-     */
+    public function getRepoGit(): string
+    {
+        return $this->repoGit;
+    }
+
+    public function setRepoGit(string $repoGit): void
+    {
+        $this->repoGit = $repoGit;
+    }
+
+    public function getIdAuthor(): int
+    {
+        return $this->idAuthor;
+    }
+
+    public function setIdAuthor(int $idAuthor): void
+    {
+        $this->idAuthor = $idAuthor;
+    }
+
     public function getThumbnail(): string
     {
         return $this->thumbnail;
     }
 
-    /**
-     * Set the value of thumbnail
-     */
-    public function setThumbnail(string $thumbnail): self
+    public function setThumbnail(string $thumbnail): void
     {
         $this->thumbnail = $thumbnail;
-
-        return $this;
     }
 
-    /**
-     * Get the value of repo_git
-     */
-    public function getRepoGit(): string
+    public function getDescription(): string
     {
-        return $this->repo_git;
+        return $this->description;
     }
 
-    /**
-     * Set the value of repo_git
-     */
-    public function setRepoGit(string $repo_git): self
+    public function setDescription(string $description): void
     {
-        $this->repo_git = $repo_git;
-
-        return $this;
+        $this->description = $description;
     }
+
+
 }
+    
