@@ -1,10 +1,6 @@
 <?php
 require 'layout/header.php';
-// register.php
-
 require 'config.php';
-
-
 
 $reg_error = "";
 
@@ -96,7 +92,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['is_connected'] = true;
                 echo "<script>window.location.href='dashboard.php'</script>";
                 exit();
-        
             } else {
                 $reg_error = "Registration failed. Please try again.";
             }
@@ -110,48 +105,54 @@ $conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Register - Coop Brain</title>
+    <link rel="stylesheet" href="styles/register.css"> <!-- Make sure the path to styles.css is correct -->
 </head>
+
 <body>
-<div class="register-container">
-    <h2>Register</h2>
-    <form action="register.php" method="post" enctype="multipart/form-data">
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+    <div class="register-container">
+        <div class="register-box">
+            <h2>Register</h2>
+            <form action="register.php" method="post" enctype="multipart/form-data">
+                <div class="input-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="input-group">
+                    <label for="password_confirm">Confirm Password:</label>
+                    <input type="password" id="password_confirm" name="password_confirm" required>
+                </div>
+                <div class="input-group">
+                    <label for="git">GitHub Profile URL:</label>
+                    <input type="url" id="git" name="git" placeholder="https://github.com/username">
+                </div>
+                <div class="input-group">
+                    <label for="icon">Profile Icon:</label>
+                    <input type="file" id="icon" name="icon" accept="image/*">
+                </div>
+                <div class="input-group">
+                    <button type="submit" class="register-button">Register</button>
+                </div>
+                <div class="error">
+                    <?php echo htmlspecialchars($reg_error); ?>
+                </div>
+            </form>
+            <p class="login-link">Already have an account? <a href="login.php">Login here</a></p>
         </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <div>
-            <label for="password_confirm">Confirm Password:</label>
-            <input type="password" id="password_confirm" name="password_confirm" required>
-        </div>
-        <div>
-            <label for="git">GitHub Profile URL:</label>
-            <input type="url" id="git" name="git" placeholder="https://github.com/username">
-        </div>
-        <div>
-            <label for="icon">Profile Icon:</label>
-            <input type="file" id="icon" name="icon" accept="image/*">
-        </div>
-        <div>
-            <button type="submit">Register</button>
-        </div>
-        <div class="error-message">
-            <?php echo $reg_error; ?>
-        </div>
-    </form>
-    <p>Already have an account? <a href="login.php">Login here</a></p>
-</div>
+    </div>
+    <?php include 'layout/footer.php'; ?>
 </body>
+
 </html>

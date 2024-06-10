@@ -23,7 +23,14 @@ foreach ($projects as $project) {
     echo "Project Name: " . $project->getName() . "<br>";
     echo "Project State: " . $project->getState() . "<br>";
     echo "Project Repo: " . $project->getRepoGit() . "<br>";
-    echo "Project Thumbnail: <img src=\"" . $project->getThumbnail() . "\"><br>";
+    echo "Project Thumbnail: "; 
+    if ($project->getThumbnail())
+    {
+        echo "<img src=\"" .$project->getThumbnail() . "\"><br>";
+    }
+    else {
+        echo "Error thumbnail not fund<br>";
+        }
     echo "Project Description: " . $project->getDescription() . "<br>";
     echo "<hr>";
 }

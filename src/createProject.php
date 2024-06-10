@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $repoGit = "";
     $idAuthor = $_SESSION['user_id'];
     $description = $_POST['description'];
-    $images = "";
+
     $thumbnail_path = "";
 
     // Handle file upload
@@ -59,7 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
-    
 
     if (empty($error)) {
         // Create project object
@@ -102,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div>
             <label for="images"> Images:</label>
-            <input type="file" id="images" name="images" accept="image/*"  max="4">
+            <input type="file" id="images" name="images" accept="image/*" required max="4">
         </div>
         <div>
             <button type="submit">Create Project</button>

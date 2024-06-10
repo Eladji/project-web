@@ -12,6 +12,7 @@ class Project
     private string $thumbnail;
     private string $description;
 
+
     // Constructor
     public function __construct(
         string $name,
@@ -19,18 +20,21 @@ class Project
         string $repoGit,
         int $idAuthor,
         string $thumbnail,
-        string $description
+        string $description,
+   
     ) {
         $this->name = $name;
         $this->state = $state;
         $this->repoGit = $repoGit;
         $this->idAuthor = $idAuthor;
         $this->thumbnail = $thumbnail;
+    
         $this->description = $description;
         $this->creationDate = new DateTime();
     }
 
     // Getters and setters
+
 
     public function getId(): int
     {
@@ -41,6 +45,8 @@ class Project
     {
         return $this->name;
     }
+
+ 
 
     public function setName(string $name): void
     {

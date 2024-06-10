@@ -24,8 +24,9 @@ class ProjectManager
         $repoGit = $project->getRepoGit();
         $idAuthor = $project->getIdAuthor();
         $thumbnail = $project->getThumbnail();
+        
         $description = $project->getDescription();
-        $stmt->bind_param("sississ", $name, $state, $creationDate, $repoGit, $idAuthor, $thumbnail, $description);
+        $stmt->bind_param("sississ", $name, $state, $creationDate, $repoGit, $idAuthor, $thumbnail,$description);
         return $stmt->execute();
     }
 
@@ -44,7 +45,8 @@ class ProjectManager
                 $row['repo_git'],
                 $row['id_author'],
                 $row['thumbnail'],
-                $row['description']
+                $row['description'],
+                
             );
             $projectReflection = new ReflectionObject($project);
             $idProperty = $projectReflection->getProperty('id');
@@ -58,7 +60,7 @@ class ProjectManager
     // Update a project
     public function update(Project $project): bool
     {
-        $sql = "UPDATE Project SET name = ?, state = ?, repo_git = ?, id_author = ?, thumbnail = ?, description = ? 
+        $sql = "UPDATE Project SET name = ?, state = ?, repo_git = ?, id_author = ?, thumbnail = ?,  description = ? 
                 WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $id = $project->getId();
@@ -68,8 +70,9 @@ class ProjectManager
         $idAuthor = $project->getIdAuthor();
         $thumbnail = $project->getThumbnail();
         
+        
         $description = $project->getDescription();
-        $stmt->bind_param("sissisi", $name, $state, $repoGit, $idAuthor, $thumbnail, $description, $id);
+        $stmt->bind_param("sissisi", $name, $state, $repoGit, $idAuthor, $thumbnail,  $description, $id);
         return $stmt->execute();
     }
 
@@ -95,7 +98,8 @@ class ProjectManager
                 $row['repo_git'],
                 $row['id_author'],
                 $row['thumbnail'],
-                $row['description']
+                $row['description'],
+                
             );
             $projectReflection = new ReflectionObject($project);
             $idProperty = $projectReflection->getProperty('id');

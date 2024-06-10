@@ -33,7 +33,6 @@ function loadClass(string $class): void
             </a>
             <nav>
                 <ul>
-                    <li><a href="index.php">Home</a></li>
                     <?php if ($_SESSION && $_SESSION["is_connected"]) : ?>
                         <li><a href="dashboard.php">Dashboard</a></li>
                         <li><a href="logout.php">Logout</a></li>
