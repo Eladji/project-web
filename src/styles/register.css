@@ -11,8 +11,8 @@ body {
     height: 100vh;
 }
 
-/* Login container */
-.login-container {
+/* Login and Register container */
+.login-container, .register-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,8 +20,8 @@ body {
     padding: 20px;
 }
 
-/* Login box */
-.login-box {
+/* Login and Register box */
+.login-box, .register-box {
     background: #262626;
     padding: 40px;
     border-radius: 8px;
@@ -31,7 +31,7 @@ body {
     width: 100%;
 }
 
-/* Login form inputs */
+/* Form inputs */
 .input-group {
     margin-bottom: 20px;
 }
@@ -58,8 +58,8 @@ body {
     border-color: #888888;
 }
 
-/* Login button */
-.login-button {
+/* Buttons */
+.login-button, .register-button {
     background: #0066cc;
     color: #ffffff;
     border: none;
@@ -70,7 +70,7 @@ body {
     transition: background 0.3s;
 }
 
-.login-button:hover {
+.login-button:hover, .register-button:hover {
     background: #005bb5;
 }
 
@@ -81,18 +81,18 @@ body {
     margin-top: 10px;
 }
 
-/* Register link */
-.register-link {
+/* Link styles */
+.login-link, .register-link {
     margin-top: 20px;
     font-size: 14px;
 }
 
-.register-link a {
+.login-link a, .register-link a {
     color: #00aaff;
     text-decoration: none;
     transition: color 0.3s;
 }
 
-.register-link a:hover {
+.login-link a:hover, .register-link a:hover {
     color: #0099cc;
 }

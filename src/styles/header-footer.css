@@ -172,3 +172,10 @@ footer nav ul li a {
 footer nav ul li a:hover {
   text-decoration: underline;
 }
+
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+} /* Add ellipsis to text overflow max 50 characters rn */
