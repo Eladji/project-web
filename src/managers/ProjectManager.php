@@ -46,6 +46,7 @@ class ProjectManager
                 $row['id_author'],
                 $row['thumbnail'],
                 $row['description'],
+                $row['creation_date']
                 
             );
             $projectReflection = new ReflectionObject($project);

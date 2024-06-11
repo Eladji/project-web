@@ -1,7 +1,7 @@
 <?php
 require 'layout/header.php';
 require 'config.php';
-
+$userManager = new UserManager($conn);
 $reg_error = "";
 
 // Define target directory for icon uploads from environment variable
@@ -15,11 +15,11 @@ if (!file_exists($target_dir)) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $password_confirm = $_POST['password_confirm'];
-    $git = $_POST['git'] ?? ''; // GitHub profile URL
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $password = htmlspecialchars($_POST['password']);
+    $password_confirm = htmlspecialchars($_POST['password_confirm']);
+    $git = htmlspecialchars($_POST['git'] ?? ''); // GitHub profile URL
 
     $icon_path = "";
 
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($password !== $password_confirm) {
         $reg_error = "Passwords do not match.";
     } else {
-        $userManager = new UserManager($conn);
+        
 
         // Check if email already exists
         $sql = "SELECT id FROM user WHERE email = ?";
@@ -76,17 +76,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             // Hash password
             $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
             // Set default values for score and nbt_project
             $score = 0;
             $nbt_project = 0;
+            $user = new User($name, $password,$email,  $git, $score, $nbt_project, $icon_path);
 
             // Insert new user
-            $sql = "INSERT INTO user (name, email, password, git, icon, score, nbt_project) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssssis", $name, $email, $hashed_password, $git, $icon_path, $score, $nbt_project);
-
-            if ($stmt->execute()) {
+    
+            if ($userManager->createUser($user)) {
                 $_SESSION['user_id'] = $stmt->insert_id;
                 $_SESSION['user_name'] = $name;
                 $_SESSION['is_connected'] = true;

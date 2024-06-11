@@ -1,113 +1,60 @@
 <?php
-class comment
-{
+// src/Comment.php
+
+class Comment {
     private int $id;
+    private int $idProject;
+    private int $idAuthor;
+    private DateTime $creationDate;
     private string $content;
-    private $creation_date;
-    private int $id_author;
-    private int $id_project;
-    
-    public function __construct(array $data)
-    {
-        $this->hydrate($data);
+
+    public function __construct(int $idProject, int $idAuthor, DateTime $creationDate, string $content) {
+        $this->idProject = $idProject;
+        $this->idAuthor = $idAuthor;
+        $this->creationDate = $creationDate;
+        $this->content = $content;
     }
 
-    public function hydrate(array $data): void
-    {
-        foreach ($data as $key => $value) {
-            $method = "set" . ucfirst($key);
-            if (method_exists($this, $method)) {
-                $this->$method($value);
-            }
-        }
-    }
-    /**
-     * Get the value of id
-     */
-    public function getId(): int
-    {
+    // Getter methods
+    public function getId(): int {
         return $this->id;
     }
 
-    /**
-     * Set the value of id
-     */
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
+    public function getIdProject(): int {
+        return $this->idProject;
     }
 
-    /**
-     * Get the value of content
-     */
-    public function getContent(): string
-    {
+    public function getIdAuthor(): int {
+        return $this->idAuthor;
+    }
+
+    public function getCreationDate(): DateTime {
+        return $this->creationDate;
+    }
+
+    public function getContent(): string {
         return $this->content;
     }
 
-    /**
-     * Set the value of content
-     */
-    public function setContent(string $content): self
-    {
+    // Setter methods (if needed)
+    public function setId(int $id): void {
+        $this->id = $id;
+    }
+
+    public function setIdProject(int $idProject): void {
+        $this->idProject = $idProject;
+    }
+
+    public function setIdAuthor(int $idAuthor): void {
+        $this->idAuthor = $idAuthor;
+    }
+
+    public function setCreationDate(DateTime $creationDate): void {
+        $this->creationDate = $creationDate;
+    }
+
+    public function setContent(string $content): void {
         $this->content = $content;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of creation_date
-     */
-    public function getCreationDate()
-    {
-        return $this->creation_date;
-    }
-
-    /**
-     * Set the value of creation_date
-     */
-    public function setCreationDate($creation_date): self
-    {
-        $this->creation_date = $creation_date;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of id_author
-     */
-    public function getIdAuthor(): int
-    {
-        return $this->id_author;
-    }
-
-    /**
-     * Set the value of id_author
-     */
-    public function setIdAuthor(int $id_author): self
-    {
-        $this->id_author = $id_author;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of id_project
-     */
-    public function getIdProject(): int
-    {
-        return $this->id_project;
-    }
-
-    /**
-     * Set the value of id_project
-     */
-    public function setIdProject(int $id_project): self
-    {
-        $this->id_project = $id_project;
-
-        return $this;
     }
 }
+?>
