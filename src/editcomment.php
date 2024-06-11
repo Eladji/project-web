@@ -1,6 +1,6 @@
 <?php
 require 'config.php';
-require_once 'model/Comment.php';
+require_once 'model/comment.php';
 require_once 'managers/CommentManager.php';
 
 $commentManager = new CommentManager($conn);
@@ -19,6 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Redirect back to the main page
-header('Location: projectpae.php');
+echo "<script>window.location.href='projectpae.php?id=".$_POST['projectId']."'</script>";
 exit;
 ?>

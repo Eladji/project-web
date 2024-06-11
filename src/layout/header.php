@@ -22,6 +22,7 @@ function loadClass(string $class): void
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coop-Brain</title>
+    <link rel="icon" type="image/x-png" href="media/cb_icon-transformed.png">
     <link rel="stylesheet" href="styles/header-footer.css">
 </head>
 <body>

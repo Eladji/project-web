@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $creationDate = new DateTime();
     $comment = new Comment($projectId, $_SESSION['user_id'],$creationDate ,$content, );
     $commentManager->create($comment);
-    echo "<script>window.location.href='projectpae.php'</script>";
+    echo "<script>window.location.href='projectpae.php?id=".$_POST['projectId']."'</script>";
     
     exit();
 }

@@ -3,7 +3,7 @@ include 'layout/header.php';
 require 'config.php';
 
 $projectManager = new ProjectManager($conn);
-$projectId = 4; // replace with your project ID
+$projectId = intval($_GET['id']); // replace with your project ID
 $project = $projectManager->read($projectId);
 
 $commentManager = new CommentManager($conn);
@@ -25,7 +25,7 @@ echo '<div class="container">
         <div>
             <label for="content">Content:</label>
             <textarea id="content" name="content" rows="4" required></textarea>
-            <input type="hidden" name="projectId" value="' . $projectId . '">
+            <input type="hidden" name="projectId" value='. $projectId . '>
         </div>
         <div>
             <button type="submit">Create Comment</button>
@@ -45,6 +45,22 @@ foreach ($comments as $comment) {
         echo "<div class='buttons'>";
         echo "<div class='action_btn'>";
         echo '<button  onclick="editComment(' . $comment->getId() . ', \'' . htmlspecialchars($comment->getContent()) . '\')">Edit</button>';
+        echo '<div class="container">
+    <h2>Create Comment</h2>
+    <form action="editcomment.php" method="post">
+        <div>
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" rows="4" required></textarea>
+       
+            <input type="hidden" name="commentId" value='. $comment->getId() . '>
+           
+            
+        </div>
+        <div>
+            <button type="submit">Create Comment</button>
+        </div>
+    </form>
+</div>';
         echo '<button class="delete" onclick="confirmDelete(' . $comment->getId() . ')">Delete</button>';
         echo "</div>";
         echo "</div>";

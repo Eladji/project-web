@@ -1,5 +1,6 @@
 <?php
 include 'layout/header.php';
+echo "<br>";
 echo "<link rel='stylesheet' href='styles/index.css'>";
 
 require 'config.php';
@@ -13,7 +14,7 @@ echo "<h2>Projects</h2>";
 echo "<ul class='cards'>";
 foreach ($projects as $project) {
     echo "<li>";
-    echo "<a href='' class='card'>";
+    echo "<a href='projectpae.php?id=". $project->getId() . "' class='card'>";
     if ($project->getThumbnail()) {
         echo "<img class='card__image' src=\"" . $project->getThumbnail() . "\">";
         } else {
@@ -36,6 +37,7 @@ foreach ($projects as $project) {
     echo "</div>";
     echo "</a>";
     echo "</li>";
+
 } 
 echo "</ul>";
 

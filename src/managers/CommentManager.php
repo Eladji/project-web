@@ -1,7 +1,7 @@
 <?php
 // src/CommentManager.php
 
-require_once 'model/Comment.php';
+require_once 'model/comment.php';
 
 class CommentManager {
     private mysqli $conn;

@@ -1,7 +1,7 @@
 <?php
 // src/ProjectManager.php
 
-require_once 'model/Project.php';
+require_once 'model/project.php';
 
 class ProjectManager
 {
@@ -18,12 +18,12 @@ class ProjectManager
         $sql = "INSERT INTO Project (name, state, creation_date, repo_git, id_author, thumbnail, description)
                 VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
-        $name = $project->getName();
+        $name = htmlspecialchars($project->getName());
         $state = $project->getState();
         $creationDate = $project->getCreationDate()->format('Y-m-d H:i:s');
-        $repoGit = $project->getRepoGit();
+        $repoGit = htmlspecialchars($project->getRepoGit());
         $idAuthor = $project->getIdAuthor();
-        $thumbnail = $project->getThumbnail();
+        $thumbnail = htmlspecialchars($project->getThumbnail());
         
         $description = $project->getDescription();
         $stmt->bind_param("sississ", $name, $state, $creationDate, $repoGit, $idAuthor, $thumbnail,$description);
@@ -65,9 +65,9 @@ class ProjectManager
                 WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $id = $project->getId();
-        $name = $project->getName();
+        $name = htmlspecialchars($project->getName());
         $state = $project->getState();
-        $repoGit = $project->getRepoGit();
+        $repoGit = htmlspecialchars($project->getRepoGit());
         $idAuthor = $project->getIdAuthor();
         $thumbnail = $project->getThumbnail();
         
