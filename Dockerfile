@@ -8,3 +8,5 @@ COPY ./src /var/www/html
 
 # Ensure the Apache configuration listens on port 80
 EXPOSE 80
+EXPOSE 8081
+EXPOSE 3306
