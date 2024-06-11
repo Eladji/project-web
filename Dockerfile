@@ -12,3 +12,5 @@ EXPOSE 80
 FROM mysql:8.0
 COPY my.cnf /etc/mysql/my.cnf
 EXPOSE 3306
+FROM phpmyadmin/phpmyadmin:5.2.1
+EXPOSE 8081

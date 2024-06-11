@@ -1,28 +1,6 @@
 version: '3'
 services:
  
-  mysql:
-    image: mysql:8.0
-    deploy:
-      resources:
-        limits:
-          cpus: '0.50'
-          memory: 256M
-    ports:
-      - "6033:3306"
-    volumes:
-      - dbdata:/var/lib/mysql
-    environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
-      MYSQL_DATABASE: app_db
-    env_file:
-      - .env
-    restart: on-failure
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "200k"
-        max-file: "10"
  
  
   app:
@@ -44,7 +22,29 @@ services:
       UPLOAD_DIR: uploads/icons/
     depends_on:
       - mysql
-
+  mysql:
+      image: mysql:8.0
+      deploy:
+        resources:
+          limits:
+            cpus: '0.50'
+            memory: 256M
+      ports:
+        - "6033:3306"
+      volumes:
+        - dbdata:/var/lib/mysql
+      environment:
+        MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+        MYSQL_DATABASE: app_db
+      env_file:
+        - .env
+      restart: on-failure
+      logging:
+        driver: "json-file"
+        options:
+          max-size: "200k"
+          max-file: "10"
+  
  
 
   phpmyadmin:
