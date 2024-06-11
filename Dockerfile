@@ -8,5 +8,7 @@ COPY ./src /var/www/html
 
 # Ensure the Apache configuration listens on port 80
 EXPOSE 80
-EXPOSE 8081
+
+FROM mysql:8.0
+COPY my.cnf /etc/mysql/my.cnf
 EXPOSE 3306
